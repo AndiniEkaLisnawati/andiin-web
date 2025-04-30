@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -9,12 +9,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { RectangleEllipsis, MapPin, Phone, Linkedin, Github, Twitter, Dribbble, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from 'emailjs-com';
 
+// EmailJS configuration constants
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_USER_ID = 'YOUR_USER_ID';
+
+// Form validation schema - we removed subject as requested
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  name: z.string().min(2, { message: "Nama harus minimal 2 karakter." }),
+  email: z.string().email({ message: "Masukkan alamat email yang valid." }),
+  message: z.string().min(10, { message: "Pesan harus minimal 10 karakter." }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
