@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { RectangleEllipsis, MapPin, Phone, Linkedin, Github, Twitter, Dribbble } from "lucide-react";
+import { RectangleEllipsis, MapPin, Phone, Linkedin, Github, Twitter, Dribbble, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -20,6 +21,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function ContactSection() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -31,14 +33,48 @@ export default function ContactSection() {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // In a real application, you would send this data to a server
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    form.reset();
+  const onSubmit = async (data: FormValues) => {
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Send form data to our API
+      const response = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        // On success, show success message
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        // On failure, show error message
+        toast({
+          title: "Error sending message",
+          description: result.message || "There was a problem submitting your message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error sending contact form:", error);
+      toast({
+        title: "Connection error",
+        description: "Could not connect to the server. Please check your internet connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -209,8 +245,16 @@ export default function ContactSection() {
                   <Button 
                     type="submit" 
                     className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg w-full sm:w-auto"
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
               </Form>
