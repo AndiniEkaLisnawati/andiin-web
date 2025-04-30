@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,6 +23,12 @@ type FormValues = z.infer<typeof formSchema>;
 export default function ContactSection() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Initialize EmailJS
+  useEffect(() => {
+    // Initialize EmailJS with user ID
+    emailjs.init(import.meta.env.VITE_EMAILJS_USER_ID || '');
+  }, []);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
