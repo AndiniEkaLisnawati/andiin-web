@@ -130,5 +130,5 @@ export const projectsData: Project[] = [
     ],
     liveLink: "#",
     repoLink: "#"
-  }
+  },
 ];

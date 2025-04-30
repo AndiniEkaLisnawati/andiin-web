@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -7,16 +7,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { RectangleEllipsis, MapPin, Phone, Linkedin, Github, Twitter, Dribbble, Loader2 } from "lucide-react";
+import { RectangleEllipsis, MapPin, Phone, Linkedin, Github, Twitter, Dribbble, Loader2, Instagram, Flower } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 // Form validation schema - hanya 3 field sesuai permintaan
 const formSchema = z.object({
   name: z.string().min(2, { message: "Nama lengkap harus diisi (minimal 2 karakter)." }),
   email: z.string().email({ message: "Masukkan alamat email yang valid." }),
   message: z.string().min(10, { message: "Pesan harus diisi (minimal 10 karakter)." }),
+  subject: z.string().min(3, {message: "subjek harus diidi (minimal 3 karakter)."})
 });
+
+
+
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -24,55 +28,52 @@ export default function ContactSection() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // Initialize EmailJS
-  useEffect(() => {
-    // Initialize EmailJS with user ID
-    emailjs.init(import.meta.env.VITE_EMAILJS_USER_ID || '');
-  }, []);
-  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
+      subject: "",
       message: "",
     },
   });
 
   const onSubmit = async (data: FormValues) => {
     if (isSubmitting) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
-      // Persiapan template parameter untuk EmailJS
       const templateParams = {
-        name: data.name,
+        nama: data.name,
+        subjek:data.subject,
         email: data.email,
-        message: data.message,
-        to_email: 'andiniekalisnawatilili2@gmail.com',
+        pesan: data.message,
+        penerima: 'andiniekalisnawatililis2@gmail.com', // pastikan ini digunakan di template
+        // jika ada variabel lain yang diperlukan di template, tambahkan di sini
       };
-      
-      // Kirim email menggunakan EmailJS
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
-        templateParams,
-        import.meta.env.VITE_EMAILJS_USER_ID || ''
-      );
-      
-      // Tampilkan pesan sukses
+
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const userId = import.meta.env.VITE_EMAILJS_USER_ID; // public key (sebelumnya disebut user ID)
+
+      console.log('Service ID:', serviceId);
+      console.log('Template ID:', templateId);
+      console.log('User ID / Public Key:', userId);
+
+      const response = await emailjs.send(serviceId, templateId, templateParams, userId);
+
+      console.log('Berhasil mengirim email:', response);
+
       toast({
         title: "Pesan Terkirim!",
         description: "Terima kasih telah menghubungi. Saya akan segera merespons.",
       });
-      
-      // Reset form
+
       form.reset();
     } catch (error) {
-      console.error("Error mengirim email:", error);
-      
-      // Tampilkan pesan error
+      console.error("Error mengirim pesan:", error);
+
       toast({
         title: "Gagal Mengirim Pesan",
         description: "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.",
@@ -82,7 +83,6 @@ export default function ContactSection() {
       setIsSubmitting(false);
     }
   };
-
   return (
     <section id="contact" className="py-20 md:py-28 bg-gradient-to-br from-accent to-white">
       <div className="container mx-auto px-6">
@@ -144,17 +144,20 @@ export default function ContactSection() {
               <div className="mt-8">
                 <h4 className="font-medium text-gray-700 mb-4">Terhubung dengan saya</h4>
                 <div className="flex space-x-4">
-                  <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
+                <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
+                <Flower className="h-5 w-5" />
+                </a>
+                  <a href="https://www.linkedin.com/in/andiniekalisnawati" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
+                  <a href="https://github.com/AndiniEkaLisnawati" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
                     <Github className="h-5 w-5" />
                   </a>
-                  <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
-                    <Twitter className="h-5 w-5" />
+                  <a href="https://www.instagram.com/sy.andnnn" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
+                    <Instagram className="h-5 w-5" />
                   </a>
                   <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
-                    <Dribbble className="h-5 w-5" />
+                    <Flower className="h-5 w-5" />
                   </a>
                 </div>
               </div>
@@ -210,6 +213,24 @@ export default function ContactSection() {
                       )}
                     />
                   </div>
+
+                  <FormField
+                    control={form.control}
+                    name="subject"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">Subject</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="What is this about?" 
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary" 
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                   
                   <FormField
                     control={form.control}

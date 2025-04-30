@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Flower2 } from "lucide-react";
 
 interface HeaderProps {
   activeSection: string | null;
@@ -30,7 +30,13 @@ export default function Header({ activeSection, isMobileMenuOpen, setIsMobileMen
         <div className="flex justify-between items-center">
           {/* Logo/Name */}
           <a href="#home" className="font-poppins font-bold text-xl text-primary flex items-center">
-            <span>Jane Doe</span>
+            <span> 
+            <a href="#home" className="font-poppins font-bold text-xl text-primary flex items-center">
+            <Flower2/>
+            <Flower2/>
+            <Flower2/>
+          </a>
+            </span>
           </a>
 
           {/* Desktop Navigation */}

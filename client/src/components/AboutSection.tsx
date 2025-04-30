@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { MapPin, GraduationCap, Briefcase } from "lucide-react";
+import { MapPin, Briefcase, BookHeart } from "lucide-react";
+import Pict2 from "../assets/fotoaku3.jpeg";
+import { SiStudyverse } from "react-icons/si";
 
 export default function AboutSection() {
   return (
@@ -26,7 +28,7 @@ export default function AboutSection() {
           >
             <div className="rounded-lg overflow-hidden shadow-lg bg-accent p-2">
               <img 
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" 
+                src={Pict2}
                 alt="Minimalist desk setup with laptop and coffee" 
                 className="rounded w-full h-auto"
               />
@@ -43,21 +45,25 @@ export default function AboutSection() {
             <h3 className="font-poppins font-semibold text-2xl mb-4 text-gray-800">Get to know me</h3>
             
             <p className="text-gray-600 mb-4 leading-relaxed">
-              I'm a passionate Junior Front-End Developer with a keen eye for creating visually appealing and user-friendly web experiences. Having completed intensive training in modern web technologies, I now specialize in building responsive websites and applications.
+            Hi! I'm Andini Eka Lisnawati, a 11th grade student with a strong interest in front end development. I learn by doing through hands on projects, trying out new tools, and collaborating with others to bring ideas to life. I’m always curious, always learning.
+            </p>
+
+            <p className="text-gray-600 mb-4 leading-relaxed">
+            I aspire to become a Software Engineer, building innovative solutions to real world problems. Every project I work on brings me closer to that goal.
             </p>
             
             <p className="text-gray-600 mb-6 leading-relaxed">
-              I'm particularly interested in UI/UX design principles and implementing clean, efficient code. My goal is to create digital experiences that are not only beautiful but also intuitive and accessible for all users. When I'm not coding, you'll find me exploring new design trends, learning new technologies, or enjoying outdoor activities.
+            When I’m not coding, I enjoy creative activities like embroidering, sewing, or learning how to crochet. I believe creativity comes in many forms, and I love discovering new ways to express it—both through code and beyond.
             </p>
             
             <div className="flex flex-wrap gap-4 mt-2">
               <div className="flex items-center text-gray-700">
                 <MapPin className="text-primary/80 mr-2 h-5 w-5" />
-                <span>Jakarta, Indonesia</span>
+                <span>Indonesia</span>
               </div>
               <div className="flex items-center text-gray-700">
-                <GraduationCap className="text-primary/80 mr-2 h-5 w-5" />
-                <span>Computer Science Graduate</span>
+                <BookHeart className="text-primary/80 mr-2 h-5 w-5" />
+                <span>11th Grade Student</span>
               </div>
               <div className="flex items-center text-gray-700">
                 <Briefcase className="text-primary/80 mr-2 h-5 w-5" />

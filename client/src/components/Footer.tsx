@@ -1,12 +1,12 @@
-import { Linkedin, Github, Twitter } from "lucide-react";
+import { Linkedin, Github, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-700 text-white py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <a href="#" className="font-poppins font-bold text-xl text-primary/80">Jane Doe</a>
+            <a href="#" className="font-poppins font-bold text-xl text-primary/80">Andin </a>
             <p className="text-gray-400 mt-2">Junior Front-End Developer</p>
           </div>
           
@@ -20,22 +20,22 @@ export default function Footer() {
             </nav>
             
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary/80 transition-colors">
+              <a href="https://www.linkedin.com/in/andiniekalisnawati/" className="text-gray-400 hover:text-primary/80 transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary/80 transition-colors">
+              <a href="https://github.com/AndiniEkaLisnawati" className="text-gray-400 hover:text-primary/80 transition-colors">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary/80 transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a href="https://www.instagram.com/sy.andnnn" className="text-gray-400 hover:text-primary/80 transition-colors">
+                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} Jane Doe. All rights reserved.</p>
-          <p className="text-gray-500 text-sm mt-2 md:mt-0">Made with <span className="text-primary">♥</span> using React & Tailwind</p>
+          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} Andin . All rights reserved.</p>
+          <p className="text-gray-500 text-sm mt-2 md:mt-0">Made with <span className="text-primary">♥</span> by Me</p>
         </div>
       </div>
     </footer>
