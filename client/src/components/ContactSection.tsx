@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -11,16 +11,11 @@ import { RectangleEllipsis, MapPin, Phone, Linkedin, Github, Twitter, Dribbble, 
 import { useToast } from "@/hooks/use-toast";
 import emailjs from 'emailjs-com';
 
-// EmailJS configuration constants
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_USER_ID = 'YOUR_USER_ID';
-
-// Form validation schema - we removed subject as requested
+// Form validation schema - hanya 3 field sesuai permintaan
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Nama harus minimal 2 karakter." }),
+  name: z.string().min(2, { message: "Nama lengkap harus diisi (minimal 2 karakter)." }),
   email: z.string().email({ message: "Masukkan alamat email yang valid." }),
-  message: z.string().min(10, { message: "Pesan harus minimal 10 karakter." }),
+  message: z.string().min(10, { message: "Pesan harus diisi (minimal 10 karakter)." }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -34,7 +29,6 @@ export default function ContactSection() {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
       message: "",
     },
   });
@@ -45,37 +39,37 @@ export default function ContactSection() {
     setIsSubmitting(true);
     
     try {
-      // Send form data to our API
-      const response = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
+      // Persiapan template parameter untuk EmailJS
+      const templateParams = {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        to_email: 'andiniekalisnawatilili2@gmail.com',
+      };
       
-      if (response.ok) {
-        // On success, show success message
-        toast({
-          title: "Message sent successfully!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        form.reset();
-      } else {
-        // On failure, show error message
-        toast({
-          title: "Error sending message",
-          description: result.message || "There was a problem submitting your message. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Error sending contact form:", error);
+      // Kirim email menggunakan EmailJS
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
+        templateParams,
+        import.meta.env.VITE_EMAILJS_USER_ID || ''
+      );
+      
+      // Tampilkan pesan sukses
       toast({
-        title: "Connection error",
-        description: "Could not connect to the server. Please check your internet connection and try again.",
+        title: "Pesan Terkirim!",
+        description: "Terima kasih telah menghubungi. Saya akan segera merespons.",
+      });
+      
+      // Reset form
+      form.reset();
+    } catch (error) {
+      console.error("Error mengirim email:", error);
+      
+      // Tampilkan pesan error
+      toast({
+        title: "Gagal Mengirim Pesan",
+        description: "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.",
         variant: "destructive",
       });
     } finally {
@@ -93,9 +87,9 @@ export default function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-poppins font-bold text-3xl md:text-4xl mb-4 text-gray-900">Get In Touch</h2>
+          <h2 className="font-poppins font-bold text-3xl md:text-4xl mb-4 text-gray-900">Hubungi Saya</h2>
           <div className="w-20 h-1 bg-primary/60 mx-auto rounded-full mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">Have a project in mind or want to discuss potential opportunities? Feel free to reach out!</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">Punya proyek dalam pikiran atau ingin mendiskusikan potensi kerjasama? Jangan ragu untuk menghubungi!</p>
         </motion.div>
         
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12">
@@ -107,7 +101,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Contact Information</h3>
+              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Informasi Kontak</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -116,7 +110,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-700 mb-1">Email</h4>
-                    <a href="mailto:janedoe@example.com" className="text-gray-600 hover:text-primary transition-colors">janedoe@example.com</a>
+                    <a href="mailto:andiniekalisnawatilili2@gmail.com" className="text-gray-600 hover:text-primary transition-colors">andiniekalisnawatilili2@gmail.com</a>
                   </div>
                 </div>
                 
@@ -125,7 +119,7 @@ export default function ContactSection() {
                     <MapPin className="text-primary h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-1">Location</h4>
+                    <h4 className="font-medium text-gray-700 mb-1">Lokasi</h4>
                     <p className="text-gray-600">Jakarta, Indonesia</p>
                   </div>
                 </div>
@@ -135,14 +129,14 @@ export default function ContactSection() {
                     <Phone className="text-primary h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-1">Phone</h4>
+                    <h4 className="font-medium text-gray-700 mb-1">Telepon</h4>
                     <a href="tel:+6281234567890" className="text-gray-600 hover:text-primary transition-colors">+62 812 3456 7890</a>
                   </div>
                 </div>
               </div>
               
               <div className="mt-8">
-                <h4 className="font-medium text-gray-700 mb-4">Connect with me</h4>
+                <h4 className="font-medium text-gray-700 mb-4">Terhubung dengan saya</h4>
                 <div className="flex space-x-4">
                   <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
                     <Linkedin className="h-5 w-5" />
@@ -169,7 +163,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Send Me a Message</h3>
+              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Kirim Pesan</h3>
               
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -179,10 +173,10 @@ export default function ContactSection() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-sm font-medium text-gray-700">Name</FormLabel>
+                          <FormLabel className="text-sm font-medium text-gray-700">Nama Lengkap</FormLabel>
                           <FormControl>
                             <Input 
-                              placeholder="Your name" 
+                              placeholder="Nama lengkap Anda" 
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary" 
                               {...field} 
                             />
@@ -200,7 +194,7 @@ export default function ContactSection() {
                           <FormLabel className="text-sm font-medium text-gray-700">Email</FormLabel>
                           <FormControl>
                             <Input 
-                              placeholder="your.email@example.com" 
+                              placeholder="email@contoh.com" 
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary" 
                               {...field} 
                             />
@@ -213,31 +207,13 @@ export default function ContactSection() {
                   
                   <FormField
                     control={form.control}
-                    name="subject"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">Subject</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="What is this about?" 
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">Message</FormLabel>
+                        <FormLabel className="text-sm font-medium text-gray-700">Pesan</FormLabel>
                         <FormControl>
                           <Textarea 
-                            placeholder="Your message here..." 
+                            placeholder="Tulis pesan Anda di sini..." 
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"
                             rows={4}
                             {...field} 
@@ -256,10 +232,10 @@ export default function ContactSection() {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Sending...
+                        Mengirim...
                       </>
                     ) : (
-                      "Send Message"
+                      "Kirim Pesan"
                     )}
                   </Button>
                 </form>
