@@ -93,9 +93,9 @@ export default function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-poppins font-bold text-3xl md:text-4xl mb-4 text-gray-900">Hubungi Saya</h2>
+          <h2 className="font-poppins font-bold text-3xl md:text-4xl mb-4 text-gray-900">Contact Me</h2>
           <div className="w-20 h-1 bg-primary/60 mx-auto rounded-full mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">Punya proyek dalam pikiran atau ingin mendiskusikan potensi kerjasama? Jangan ragu untuk menghubungi!</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">Interested in working together or just want to say hi? Feel free to reach out!</p>
         </motion.div>
         
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12">
@@ -107,7 +107,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Informasi Kontak</h3>
+              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Contact Information</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -116,7 +116,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-700 mb-1">Email</h4>
-                    <a href="mailto:andiniekalisnawatilili2@gmail.com" className="text-gray-600 hover:text-primary transition-colors">andiniekalisnawatilili2@gmail.com</a>
+                    <a href="mailto:andiniekalisnawatililis2@gmail.com" className="text-gray-600 hover:text-primary transition-colors">andiniekalisnawatililis2@gmail.com</a>
                   </div>
                 </div>
                 
@@ -125,8 +125,8 @@ export default function ContactSection() {
                     <MapPin className="text-primary h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-1">Lokasi</h4>
-                    <p className="text-gray-600">Jakarta, Indonesia</p>
+                    <h4 className="font-medium text-gray-700 mb-1">location</h4>
+                    <p className="text-gray-600"> Indonesia</p>
                   </div>
                 </div>
                 
@@ -135,14 +135,14 @@ export default function ContactSection() {
                     <Phone className="text-primary h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-1">Telepon</h4>
-                    <a href="tel:+6281234567890" className="text-gray-600 hover:text-primary transition-colors">+62 812 3456 7890</a>
+                    <h4 className="font-medium text-gray-700 mb-1">Phone</h4>
+                    <a href="tel:+6281234567890" className="text-gray-600 hover:text-primary transition-colors">+62 858 8228 9114</a>
                   </div>
                 </div>
               </div>
               
               <div className="mt-8">
-                <h4 className="font-medium text-gray-700 mb-4">Terhubung dengan saya</h4>
+                <h4 className="font-medium text-gray-700 mb-4">Connect with me</h4>
                 <div className="flex space-x-4">
                 <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
                 <Flower className="h-5 w-5" />
@@ -172,7 +172,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Kirim Pesan</h3>
+              <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Send Messaage</h3>
               
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -182,10 +182,10 @@ export default function ContactSection() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-sm font-medium text-gray-700">Nama Lengkap</FormLabel>
+                          <FormLabel className="text-sm font-medium text-gray-700">Full Name</FormLabel>
                           <FormControl>
                             <Input 
-                              placeholder="Nama lengkap Anda" 
+                              placeholder="Your full name" 
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary" 
                               {...field} 
                             />
@@ -203,7 +203,7 @@ export default function ContactSection() {
                           <FormLabel className="text-sm font-medium text-gray-700">Email</FormLabel>
                           <FormControl>
                             <Input 
-                              placeholder="email@contoh.com" 
+                              placeholder="email@example.com" 
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary" 
                               {...field} 
                             />
@@ -237,10 +237,10 @@ export default function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">Pesan</FormLabel>
+                        <FormLabel className="text-sm font-medium text-gray-700">Message</FormLabel>
                         <FormControl>
                           <Textarea 
-                            placeholder="Tulis pesan Anda di sini..." 
+                            placeholder=" Write your message here..." 
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"
                             rows={4}
                             {...field} 
@@ -259,10 +259,10 @@ export default function ContactSection() {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Mengirim...
+                        Sending...
                       </>
                     ) : (
-                      "Kirim Pesan"
+                      "Send Message"
                     )}
                   </Button>
                 </form>

@@ -1,4 +1,8 @@
-// Define types
+import TaviImg from "../assets/tavi-landing-page.png";
+import AlloBankImg from "../assets/alloBank.png";
+import HausImg from "../assets/Haus.png";
+import TrashImg from "../assets/trashtocash.png";
+import BMIIMG from "../assets/BMI.png";
 type Skill = {
   name: string;
   icon: string;
@@ -97,38 +101,61 @@ export const skillsData: Skill[] = [
 ];
 
 // Projects Data
+
 export const projectsData: Project[] = [
   {
-    title: "E-commerce Platform",
-    description: "A modern e-commerce platform built with React and Tailwind CSS featuring product listings, cart functionality, and payment integration.",
-    imageUrl: "https://images.unsplash.com/photo-1599507593548-0187ac4043c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
+    title: "Haus! Landing Page",
+    description: "Haus is a Responsive landing page for a modern e-commerce platform, showcasing a visual layout of product listings. Built using plain HTML, CSS, and JavaScript.",
+    imageUrl: HausImg,
     tags: [
-      { name: "React", color: "bg-primary" },
-      { name: "Tailwind", color: "bg-indigo-500" }
+      { name: "Responsive", color: "bg-primary" },
+      { name: "Elegant", color: "bg-indigo-500" }
     ],
-    liveLink: "#",
-    repoLink: "#"
+    liveLink: "https://haus-landing-page-main.vercel.app/",
+    repoLink: "https://github.com/AndiniEkaLisnawati/haus-landing-page-main"
   },
   {
-    title: "Weather Dashboard",
-    description: "A weather application that provides current weather conditions and forecasts for any location using the OpenWeatherMap API.",
-    imageUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
+    title: "Trash To Cash",
+    description: "TrashToCash is a web-based platform that encourages users to manage waste responsibly by converting recyclable trash into rewards. It features educational content, a point-based system, and order tracking to support environmental awareness through digital engagement.",
+    imageUrl: TrashImg,
     tags: [
-      { name: "React", color: "bg-primary" },
-      { name: "API", color: "bg-blue-500" }
+      { name: "Interactive", color: "bg-primary" },
+      { name: "Modern", color: "bg-blue-500" }
     ],
-    liveLink: "#",
-    repoLink: "#"
+    liveLink: "https://trash2cash-six.vercel.app/",
+    repoLink: "https://github.com/AndiniEkaLisnawati/capstone-project-fe"
   },
   {
-    title: "Task Manager",
-    description: "A full-featured task management application with user authentication, task creation, editing, and categorization features.",
-    imageUrl: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
+    title: "AlloBank Landing Page",
+    description: "A clean and responsive landing page design for Allobank, featuring a user-friendly layout that adapts seamlessly across devices to provide a smooth browsing experience.",
+    imageUrl: AlloBankImg,
     tags: [
-      { name: "React", color: "bg-primary" },
-      { name: "Firebase", color: "bg-green-500" }
+      { name: "Responsive", color: "bg-primary" },
+      { name: "Simple", color: "bg-green-500" }
     ],
-    liveLink: "#",
-    repoLink: "#"
+    liveLink: "https://allo-bank-landing-page.vercel.app/",
+    repoLink: "https://github.com/AndiniEkaLisnawati/AlloBank-landing-page"
+  },
+  {
+    title: "Tavi Landing Page",
+    description: "Tavi is a static landing page for a modern e-commerce platform, is not yet responsive responsive in mobile.",
+    imageUrl: TaviImg,
+    tags: [
+      { name: "Elegant", color: "bg-primary" },
+      { name: "Modern", color: "bg-indigo-500" }
+    ],
+    liveLink: "https://landing-page-tavi.vercel.app/",
+    repoLink: "https://github.com/AndiniEkaLisnawati/landing-page-Tavi"
+  },
+  {
+    title: "BMI Calculator",
+    description: "A simple Body Mass Index (BMI) calculator built with a straightforward layout, allowing users to input their height and weight to quickly determine their BMI.",
+    imageUrl: BMIIMG,
+    tags: [
+      { name: "Calculative", color: "bg-primary" },
+      { name: "Diagnostic", color: "bg-indigo-500" }
+    ],
+    liveLink: "https://bmi-calculator-liart-one.vercel.app/",
+    repoLink: "https://github.com/AndiniEkaLisnawati/BMI-Calculator"
   },
 ];
