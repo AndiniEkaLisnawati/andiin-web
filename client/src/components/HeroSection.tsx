@@ -4,12 +4,14 @@ import Pict from "../assets/fotoAku.jpeg";
 import { useRef } from "react";
 import VariableProximity from "./ui/VariableProximility";
 
+
+
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   return (
     <section
-      id="home"
-      className="pt-32 md:pt-40 pb-20 md:pb-28 bg-gradient-to-br from-accent to-white"
+    id="home"
+    className="pt-32 md:pt-40 pb-20 md:pb-28 bg-gradient-to-br from-accent to-white"
     >
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
