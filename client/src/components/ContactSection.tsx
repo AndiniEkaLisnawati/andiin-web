@@ -106,7 +106,7 @@ export default function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="bg-white rounded-xl shadow-lg p-8 flex-row">
               <h3 className="font-poppins font-semibold text-xl mb-6 text-gray-800">Contact Information</h3>
               
               <div className="space-y-6">
@@ -116,7 +116,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-700 mb-1">Email</h4>
-                    <a href="mailto:andiniekalisnawatililis2@gmail.com" className="text-gray-600 hover:text-primary transition-colors">andiniekalisnawatililis2@gmail.com</a>
+                    <a href="mailto:andiniekalisnawatililis2@gmail.com" className="text-gray-600 hover:text-primary transition-colors break-all ">andiniekalisnawatililis2@gmail.com</a>
                   </div>
                 </div>
                 
@@ -143,7 +143,7 @@ export default function ContactSection() {
               
               <div className="mt-8">
                 <h4 className="font-medium text-gray-700 mb-4">Connect with me</h4>
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 justify-center">
                 <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
                 <Flower className="h-5 w-5" />
                 </a>

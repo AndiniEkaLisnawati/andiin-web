@@ -35,8 +35,8 @@ export default function HeroSection() {
               <Button
                 onClick={() => {
                   const link = document.createElement("a");
-                  link.href = "/cv/CV_Andini.pdf"; // Lokasi file
-                  link.download = "CV_Andini.pdf"; // Nama file saat diunduh
+                  link.href = "/cv/CV_Andini Eka.pdf"; // Lokasi file
+                  link.download = "CV_Andini Eka.pdf"; // Nama file saat diunduh
                   link.click();
                 }}
                 className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-full"
