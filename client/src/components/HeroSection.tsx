@@ -35,7 +35,7 @@ export default function HeroSection() {
               <Button
                 onClick={() => {
                   const link = document.createElement("a");
-                  link.href = "/cv/CV_Andini.pdf"; // Lokasi file
+                  link.href = "/CV_Andini.pdf"; // Lokasi file
                   link.download = "CV_Andini.pdf"; // Nama file saat diunduh
                   link.click();
                 }}
