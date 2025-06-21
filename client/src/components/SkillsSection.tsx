@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { skillsData } from "@/lib/data";
-import { SiHtml5, SiCss3, SiJavascript, SiReact, SiTailwindcss, SiGit, SiFigma, SiVite, SiNpm } from "react-icons/si";
+import { SiHtml5, SiCss3, SiJavascript, SiReact, SiTailwindcss, SiGit, SiFigma, SiVite, SiNpm, SiTypescript } from "react-icons/si";
 import { Smartphone, Code, MoreHorizontal } from "lucide-react";
 
 // Map for rendering skill icons
@@ -12,6 +12,8 @@ const SkillIcon = ({ icon, color }: { icon: string, color: string }) => {
       return <SiCss3 size={24} color={color} />;
     case 'javascript':
       return <SiJavascript size={24} color={color} />;
+    case 'typescript':
+      return <SiTypescript size={24} color={color} />;
     case 'react':
       return <SiReact size={24} color={color} />;
     case 'tailwindcss':
