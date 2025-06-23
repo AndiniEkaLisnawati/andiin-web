@@ -45,12 +45,6 @@ export const skillsData: Skill[] = [
     bgColor: "bg-yellow-100",
   },
   {
-    name: "TypeScript",
-    icon: "typescript",
-    color: "#3178C6",
-    bgColor: "bg-blue-100",
-  },
-  {
     name: "React",
     icon: "react",
     color: "#61DAFB",
