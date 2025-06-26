@@ -145,7 +145,7 @@ export default function ContactSection() {
                 <h4 className="font-medium text-gray-700 mb-4">Connect with me</h4>
                 <div className="flex space-x-4 justify-center">
                 <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
-                <Flower className="h-5 w-5" />
+                <Flower className="h-5 w-5 animate-spin" />
                 </a>
                   <a href="https://www.linkedin.com/in/andiniekalisnawati" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
                     <Linkedin className="h-5 w-5" />
@@ -157,7 +157,7 @@ export default function ContactSection() {
                     <Instagram className="h-5 w-5" />
                   </a>
                   <a href="#" className="social-icon bg-accent hover:bg-accent/80 text-primary p-3 rounded-full transition-all duration-300">
-                    <Flower className="h-5 w-5" />
+                    <Flower className="h-5 w-5 animate-spin" />
                   </a>
                 </div>
               </div>

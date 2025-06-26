@@ -21,14 +21,19 @@ export default function ProjectsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map((project, index) => (
             <motion.div 
-              key={project.title}
-              className="project-card bg-white rounded-xl overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="relative overflow-hidden h-56">
+  key={project.title}
+  className="project-card bg-white rounded-xl overflow-hidden shadow-lg"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  whileHover={{ scale: 1.03 }}
+  viewport={{ once: true }}
+  transition={{ 
+    opacity: { duration: 0.5, delay: index * 0.1 },
+    y: { duration: 0.5, delay: index * 0.1 }
+  }}
+>
+
+              <div className="relative overflow-hidden h-56 ">
                 <img 
                   src={project.imageUrl} 
                   alt={project.title} 

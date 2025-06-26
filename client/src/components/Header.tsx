@@ -50,9 +50,13 @@ export default function Header({
           <a href="#home" className="font-poppins font-bold text-xl text-primary flex items-center">
             <span> 
             <a href="#home" className="font-poppins font-bold text-xl text-primary flex items-center">
-            <Flower2/>
-            <Flower2/>
-            <Flower2/>
+          <a href="#home" className="font-poppins font-bold text-xl text-primary flex items-center gap-1">
+  <Flower2 className="animate-bounce animation-delay-0" />
+  <Flower2 className="animate-bounce-down animation-delay-150" />
+  <Flower2 className="animate-bounce animation-delay-300" />
+</a>
+
+
           </a>
             </span>
           </a>
